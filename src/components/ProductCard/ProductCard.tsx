@@ -1,8 +1,29 @@
 import type React from "react";
 import type { Product } from "../../types/Product";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { UserContext } from "../../store/userContext";
+import { useContext } from "react";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  const navigate = useNavigate();
+  const userContext = useContext(UserContext);
+  if (!userContext) {
+    throw new Error("UserContext is not provided");
+  }
+  const { isAuth, addToFavorites } = userContext;
+
+  const handleSave = async () => {
+    try {
+      const authenticated = await isAuth();
+      if (authenticated) {
+        addToFavorites(product);
+      } else {
+        navigate("/login");
+      }
+    } catch {
+      navigate("/login");
+    }
+  };
   return (
     <div
       key={product.id}
@@ -50,6 +71,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </button>
 
           <button
+            onClick={(e) => {
+               e.preventDefault();
+               handleSave()
+            }}
             type="button"
             className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
           >

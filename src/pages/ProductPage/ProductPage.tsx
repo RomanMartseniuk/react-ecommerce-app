@@ -16,7 +16,7 @@ const ProductPage = () => {
   if (!userContext) {
     throw new Error("UserContext is not provided");
   }
-  const { isAuth, addToFavorites } = userContext; // тепер можна юзати isAuth
+  const { isAuth, addToFavorites } = userContext;
 
   const productId = id ? Number(id) : NaN;
 
@@ -44,10 +44,10 @@ const ProductPage = () => {
       if (authenticated) {
         addToFavorites(product);
       } else {
-        navigate("/login"); // не авторизований
+        navigate("/login");
       }
     } catch {
-      navigate("/login"); // на випадок помилки
+      navigate("/login");
     }
   };
 
