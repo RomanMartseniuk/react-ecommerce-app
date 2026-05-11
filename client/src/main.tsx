@@ -6,11 +6,14 @@ import "./styles/variables.css";
 import "./styles/index.css";
 
 import { Root } from "./routes/Root.tsx";
+import { ThemeProvider } from "./contexts/themeContext.tsx";
 
 
 
 createRoot(document.getElementById("root")!).render(
-  <Router>
-    <Root />
-  </Router>,
+  <ThemeProvider>
+    <Router>
+      <Root />
+    </Router>
+  </ThemeProvider>
 );

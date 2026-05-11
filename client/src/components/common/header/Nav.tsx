@@ -1,14 +1,13 @@
-import { Link } from "react-router";
 import { ThemeButton } from "../basic/ThemeButton";
-
 import { CartButton } from "../basic/CartButton";
+import { UserIcon } from "../basic/UserIcon";
 
 export const Nav = () => {
   return (
     <nav>
       <ThemeButton />
       <CartButton />
-      <Link to=""></Link>
+      <UserIcon />
     </nav>
   );
 };

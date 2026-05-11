@@ -8,7 +8,7 @@ export const Root = () => {
   useTheme();
 
   return (
-    <ThemeProvider>
+    
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
@@ -33,6 +33,5 @@ export const Root = () => {
 
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
-    </ThemeProvider>
   );
 };
